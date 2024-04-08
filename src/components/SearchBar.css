@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@700&display=swap');
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    margin-top: 20px;
+    border: 2px solid black;
+    border-radius: 20px;
+    background-color: #f0f0f0;
+    width: 100%;
+}
+
+.search-icon {
+    width: 30px;
+    aspect-ratio: 1;
+}
+
+.search-input {
+    flex-grow: 1;
+    font-size: 18px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    /* color: #A8D5FF; */
+    font-family: 'Karla', sans-serif;
+    font-weight: bold;
+    font-size: 25px;
+}

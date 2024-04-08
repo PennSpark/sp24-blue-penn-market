@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@700&display=swap');
+
+.category-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 15px;
+    /* border: 2px solid black; */
+    border-radius: 15px;
+    /* background-color: #f0f0f0; */
+}
+
+.category-icon {
+    width: 100px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 2px solid black;
+    background: linear-gradient(217deg, #0788FF 8.24%, rgba(220, 220, 220, 0) 91.14%);
+}
+
+.category-name {
+    font-size: 16px;
+    font-weight: bold;
+    font-family: 'Karla', sans-serif;
+}
