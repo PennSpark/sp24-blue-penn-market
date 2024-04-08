@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@700&display=swap');
+
+html,
+body {
+    margin: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.video-tutorial {
+    background: linear-gradient(to bottom, #ffffff 0%, #DDEFFF 100%);
+    min-height: 100vh;
+    min-width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Horizontally center children */
+    justify-content: center;
+    /* Vertically center children */
+    text-align: center;
+}
+
+.video-tutorial .content-box p {
+    text-decoration: none;
+    color: #000;
+    font-family: 'Karla', sans-serif;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.title-container {
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+    text-decoration: none;
+    color: #000;
+    font-family: 'Karla', sans-serif;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.content-box {
+    max-width: 600px;
+    text-align: center;
+    padding: 20px;
+    padding-left: 100px;
+    padding-right: 100px;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    margin: auto;
+    width: 80%;
+    border: 1px solid black;
+}
+
+.video-preview {
+    margin-top: 20px;
+    background-color: #ccc;
+    width: 100%;
+    padding-top: 56.25%;
+    position: relative;
+}
+
+.video-preview img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
