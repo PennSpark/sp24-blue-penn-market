@@ -16,7 +16,6 @@ function NavBar(props) {
             <div className='navbar-menu'>
                 <li><a href="/">home</a></li>
                 <li><a href="/post">post</a></li>
-                <li><a href="/login">login</a></li>
             </div>
         </div>
     );
