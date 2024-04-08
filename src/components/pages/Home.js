@@ -4,6 +4,10 @@ import Header from '../Header';
 import SearchBar from '../SearchBar';
 import CategoryCard from '../CategoryCard';
 import './Home.css';
+import slide2 from '../assets/penn market slide 2.PNG';
+import slide3 from '../assets/penn market slide 3.PNG';
+import slide4 from '../assets/penn market slide 4.PNG';
+
 
 
 
@@ -62,18 +66,19 @@ function Home(props) {
 
     const slides = [
         "https://cdn.builder.io/api/v1/image/assets/TEMP/c0933f1ceba2634f89e237453c53a349f9d6385c7bfd120026d50f0c75f35d99?apiKey=b8d09a4545bb49a8a3d7500b55db7534&",
-        // Add more image URLs for your slides here
+        slide2, slide3, slide4
     ];
 
     const [currentIndex, setCurrentIndex] = useState(0);
 
     const nextSlide = () => {
-        setCurrentIndex((prevIndex) => (prevIndex === categories.length - 1 ? 0 : prevIndex + 1));
+        setCurrentIndex((prevIndex) => (prevIndex === categories.length - 2 ? prevIndex : prevIndex + 1));
     };
-
+    
     const prevSlide = () => {
-        setCurrentIndex((prevIndex) => (prevIndex === 0 ? categories.length - 1 : prevIndex - 1));
+        setCurrentIndex((prevIndex) => (prevIndex === 0 ? prevIndex : prevIndex - 1));
     };
+    
 
     return (
         <div className="home">

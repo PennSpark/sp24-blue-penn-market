@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Karla:wght@700&display=swap');
 
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
 .home {
     display: flex;
     flex-direction: column;
@@ -35,11 +41,10 @@
     max-width: 1177px;
 }
 
-
 .arrow {
     cursor: pointer;
-    width: 85px;
-    height: 63px;
+    width: 42px;
+    height: 31px;
     background-image: url('https://cdn.builder.io/api/v1/image/assets/TEMP/ece737dd9f1c5c8b6abc4932040731fa9f02ee8ece6d57382d686dda78f4a9ae?apiKey=b8d09a4545bb49a8a3d7500b55db7534&');
     background-size: cover;
     opacity: 0.5;
@@ -51,11 +56,12 @@
 
 .arrow.right {
     cursor: pointer;
-    width: 85px;
-    height: 63px;
+    width: 42px;
+    height: 31px;
     background-image: url('https://cdn.builder.io/api/v1/image/assets/TEMP/5645ad00fa114d904af47be2f32067036f3dff8ab277b32ac2272b97fb547b9c?apiKey=b8d09a4545bb49a8a3d7500b55db7534&');
     background-size: cover;
     opacity: 0.5;
+
 }
 
 .arrow.right:hover {
