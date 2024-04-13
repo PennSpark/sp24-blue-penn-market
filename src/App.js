@@ -1,55 +1,88 @@
-import './App.css';
 import React, { useState, useEffect } from 'react';
-
-import { createClient } from '@supabase/supabase-js'
-import { Auth } from '@supabase/auth-ui-react'
-import { ThemeSupa } from '@supabase/auth-ui-shared'
-
+import Axios from 'axios';
+import { createClient } from '@supabase/supabase-js';
+import { Auth } from '@supabase/auth-ui-react';
+import { ThemeSupa } from '@supabase/auth-ui-shared';
 import Home from './components/pages/Home';
+import Login from './components/pages/Login';
+import './App.css';
 
-console.log(process.env.REACT_APP_MY_SUPABASE_URL);
-const supabase = createClient(process.env.REACT_APP_MY_SUPABASE_URL, process.env.REACT_APP_MY_SUPABASE_KEY)
+const supabase = createClient(process.env.REACT_APP_MY_SUPABASE_URL, process.env.REACT_APP_MY_SUPABASE_KEY);
 
 function App() {
-  const [session, setSession] = useState(null)
+  const [session, setSession] = useState(null);
+  const [loginStatus, setLoginStatus] = useState(false);
+
+  // Define the function to check if the user exists
+  const checkUserExists = (userId) => {
+    console.log("Checking user existence for ID:", userId);
+    Axios.get(`http://localhost:3256/landing?sessionID=${userId}`)
+      .then(response => {
+        if (response.status === 200) {
+          setLoginStatus(true);
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+        setLoginStatus(false);
+      });
+  };
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session)
-  })
+    async function checkSessionAndUser() {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (session && session.user) {
+        setSession(session);
+        checkUserExists(session.user.id);
+      } else {
+        setSession(null);
+        setLoginStatus(false);
+      }
+    }
 
-  const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session)
-  })
+    checkSessionAndUser();
 
-  return () => subscription.unsubscribe()
-  }, [])
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      console.log("Auth state changed:", event);
+      if (session && session.user) {
+        setSession(session);
+        checkUserExists(session.user.id);
+      } else {
+        setSession(null);
+        setLoginStatus(false);
+      }
+    });
 
-  console.log(session);
+    return () => subscription.unsubscribe();
+  }, []);
 
   if (!session) {
     return (
-      <div style={{ maxWidth: '400px', margin: "30px  " }}>
-        <Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} />
+      <div style={{ maxWidth: '400px', margin: "30px" }}>
+        <p>Note: Please use your UPenn email.</p>
+        <Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} providers={[]}/>
       </div>
-    )
-  }
-  else {
+    );
+  } else if (!loginStatus) {
+    return (
+      <div className="Login">
+        <Login email={session.user.email} id={session.user.id} />
+      </div>
+    );
+  } else {
     return (
       <div className="App">
         <Home/>
-        HI! You are logged in! Your user ID is {session.user.id}. I can now send this to the backend to do user logic.
-        <button onClick={async (e) => {
-          supabase.auth.signOut()
+        <div>HI! You are logged in! Your user ID is {session.user.id}. Email is {session.user.email}.</div>
+        <button onClick={async () => {
+          await supabase.auth.signOut();
+          setLoginStatus(false); // Ensure login status is reset on sign out
         }}>
           SIGN OUT
         </button>
       </div>
-    )
+    );
   }
-
 }
 
 export default App;

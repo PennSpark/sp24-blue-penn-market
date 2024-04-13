@@ -6,7 +6,7 @@ app.use(cors({origin: true, credentials: true}))
 app.use(express.json());
 
 // for new users
-async function registerIntoDB(name, password) {
+async function registerIntoDB(name, email, id) {
 
     //create client
     const client = new pg.Client({
@@ -32,8 +32,8 @@ async function registerIntoDB(name, password) {
     console.log(resCheck.rowCount == 0);
 
     if (resCheck.rowCount == 0) {
-        const queryText = 'INSERT INTO ' + tableName + ' (username, password) VALUES ($1, $2)';
-        const values = [name, password];
+        const queryText = 'INSERT INTO ' + tableName + ' (username, email, uid) VALUES ($1, $2, $3)';
+        const values = [name, email, id];
         res = await client.query(queryText, values);
     }
 
@@ -41,35 +41,6 @@ async function registerIntoDB(name, password) {
     await client.end();
 
     console.log(res);
-    return res;
-
-}
-
-// for returning users
-async function logIntoDB(name, password) {
-
-    //create client
-    const client = new pg.Client({
-        //if you want the following to work on your own computer
-        //replace the fields with your information
-        user: 'postgres',
-        database: 'pennmarket',
-        password: 'strokeseat', 
-        port: 5432,
-    });
-
-    //connect client
-    await client.connect();
-
-    const tableName = 'login';
-
-    const queryText = 'SELECT * FROM ' + tableName + ' WHERE username = $1 AND password = $2';
-    const values = [name, password];
-    const res = await client.query(queryText, values);
-
-    //close connection
-    await client.end();
-
     return res;
 
 }
@@ -144,36 +115,79 @@ async function getAllProd() {
 
 }
 
+async function checkUserExists(id) {
+
+    //create client
+    const client = new pg.Client({
+        //if you want the following to work on your own computer
+        //replace the fields with your information
+        user: 'postgres',
+        database: 'pennmarket',
+        password: 'strokeseat', 
+        port: 5432,
+    });
+
+    //connect client
+    await client.connect();
+
+    const tableName = 'login';
+    console.log(id);
+
+    // ADD USER SESSION
+    const queryText = 'SELECT * FROM ' + tableName + ' WHERE uid = $1';
+    const values = [id];
+    const res = await client.query(queryText, values);
+
+    //close connection
+    await client.end();
+
+    console.log(res);
+    return res;
+
+}
+
 app.post('/register', async (req, res) => {
 
-    const pattern = 'upenn\.edu$'
-    const matches = req.body.email.match(pattern)
+    const response = await registerIntoDB(req.body.username, req.body.email, req.body.id);
 
-    if (!matches) {
-        res.send({message: "Invalid email."})
+    if (response.rowCount <= 0) {
+        res.send({message : 'Username already exists.'})
     } else {
-        const response = await registerIntoDB(req.body.username, req.body.password);
-        console.log(response);
-        if (response == null) {
-            res.send({message : 'Username already exists.'})
-        } else {
-            res.send(response);
-        }
-    }
-
-})
-
-app.post('/login', async (req, res) => {
-
-    const response = await logIntoDB(req.body.username, req.body.password);
-
-    if (response.rowCount > 0) {
         res.send(response);
-    } else {
-        res.send({message: "Wrong username/password combination."})
     }
 
 })
+
+app.get('/landing', async (req, res) => {
+    const userId = req.query.sessionID;
+
+    if (!userId) {
+        // Handle missing session ID gracefully
+        res.status(400).send("Session ID is required");
+        return; // Ensures that no further code is executed after this response
+    }
+
+    try {
+        // Check if user exists in the database
+        const userExists = await checkUserExists(userId);
+        console.log("USER STATE", userExists);
+        if (userExists.rowCount <= 0) {
+            return; // Prevents any further code execution after the redirect
+        } else {
+            // Return 200 OK if user exists
+            res.sendStatus(200);
+            return; // Prevents any further code execution after sending the status
+        }
+    } catch (error) {
+        // Handle potential errors
+        console.error('Database error:', error);
+        if (!res.headersSent) {
+            res.status(500).send("Internal Server Error");
+        }
+        return; // Ensures no further execution after handling the error
+    }
+});
+
 
 app.post('/post', async (req, res) => {
 

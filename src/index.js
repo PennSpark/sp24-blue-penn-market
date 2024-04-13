@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import Home from './components/pages/Home';
 import Post from './components/pages/Post';
 import Login from './components/pages/Login';
 import VideoTutorial from './components/pages/VideoTutorial'; 
