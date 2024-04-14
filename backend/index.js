@@ -29,8 +29,6 @@ async function registerIntoDB(name, email, id) {
     const valuesCheck = [name];
     const resCheck = await client.query(queryTextCheck, valuesCheck);
 
-    console.log(resCheck.rowCount == 0);
-
     if (resCheck.rowCount == 0) {
         const queryText = 'INSERT INTO ' + tableName + ' (username, email, uid) VALUES ($1, $2, $3)';
         const values = [name, email, id];
@@ -85,6 +83,54 @@ async function postProduct(name, des, cat, price, sell) {
     return res;
 }
 
+// for buying a product
+// for posting a product
+async function buyProduct(iid, buy) {
+
+    //create client
+    const client = new pg.Client({
+        //if you want the following to work on your own computer
+        //replace the fields with your information
+        user: 'postgres',
+        database: 'pennmarket',
+        password: 'strokeseat', 
+        port: 5432,
+    });
+
+    //connect client
+    await client.connect();
+
+    res = null;
+
+    const checkTable = 'login';
+
+    const queryTextCheck = 'SELECT * FROM ' + checkTable + ' WHERE uid = $1';
+    const valuesCheck = [buy];
+    const resCheck = await client.query(queryTextCheck, valuesCheck); 
+
+    console.log("HERE");
+
+    const itemsTable = 'items';
+    const queryItemsCheck = 'SELECT * FROM ' + itemsTable + ' WHERE iid = $1';
+    const item = [iid];
+    const itemsCheck = await client.query(queryItemsCheck, item); 
+
+    if ((resCheck.rowCount != 0) && (itemsCheck.rowCount != 0)) {
+        const tableName = 'items';
+
+        // update the table
+        const queryText = 'UPDATE ' + tableName + ' SET buyer = $1 WHERE iid = $2';
+            const values = [buy, iid];
+            res = await client.query(queryText, values);
+    }
+
+    //close connection
+    await client.end();
+
+    console.log(res);
+    return res;
+}
+
 // getting all
 async function getAllProd() {
 
@@ -104,13 +150,12 @@ async function getAllProd() {
     const tableName = 'items';
 
     // ADD USER SESSION... for now just using 33 bc i know it will be in user database
-    const queryText = 'SELECT  i.name, i.description, i.category, i.price, u.username FROM items AS i JOIN login AS u ON i.seller = u.uid';
+    const queryText = 'SELECT i.iid, i.name, i.description, i.category, i.price, u1.username AS seller, u2.username AS buyer FROM items AS i JOIN login AS u1 ON i.seller = u1.uid LEFT JOIN login AS u2 ON i.buyer = u2.uid';
     res = await client.query(queryText);
 
     //close connection
     await client.end();
 
-    console.log(res);
     return res;
 
 }
@@ -141,7 +186,6 @@ async function checkUserExists(id) {
     //close connection
     await client.end();
 
-    console.log(res);
     return res;
 
 }
@@ -170,7 +214,6 @@ app.get('/landing', async (req, res) => {
     try {
         // Check if user exists in the database
         const userExists = await checkUserExists(userId);
-        console.log("USER STATE", userExists);
         if (userExists.rowCount <= 0) {
             return; // Prevents any further code execution after the redirect
         } else {
@@ -197,6 +240,18 @@ app.post('/post', async (req, res) => {
         res.send(response);
     } else {
         res.send({message: "Invalid seller."})
+    }
+
+})
+
+app.post('/buy', async (req, res) => {
+
+    const response = await buyProduct(req.body.item, req.body.buyer);
+
+    if (response != null) {
+        res.send(response);
+    } else {
+        res.send({message: "Invalid item or buyer."})
     }
 
 })

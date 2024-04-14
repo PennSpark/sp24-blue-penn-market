@@ -26,7 +26,7 @@ function Header() {
                         className="user-avatar"
                     />
                 </Link>
-                <Link to="/login" className="user-login">Login</Link>
+                <Link to="/login" className="user-login">Sign Out</Link>
             </div>
         </header>
     );

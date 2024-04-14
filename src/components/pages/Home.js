@@ -1,4 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { createClient } from '@supabase/supabase-js';
+import Axios from 'axios';
+
 import Navbar from '../NavBar';
 import Header from '../Header';
 import SearchBar from '../SearchBar';
@@ -9,37 +12,68 @@ import slide3 from '../assets/penn market slide 3.PNG';
 import slide4 from '../assets/penn market slide 4.PNG';
 
 
-
+const supabase = createClient(process.env.REACT_APP_MY_SUPABASE_URL, process.env.REACT_APP_MY_SUPABASE_KEY);
 
 function Home(props) {
 
     const [prods, setProds] = useState([]);
+    const [session, setSession] = useState(null)
 
-    // useEffect(() => {
-    //     Axios.get('http://localhost:3256/getall') // Replace 'your-endpoint' with your actual endpoint
-    //         .then(response => {
-    //             setProds(response.data.rows); // Assuming response.data is an array of items
-    //         })
-    //         .catch(error => {
-    //             console.error('Error fetching data:', error);
-    //         });
-    // }, []); // Run once on component mount
+    useEffect(() => {
+        supabase.auth.getSession().then(({ data: { session } }) => {
+        setSession(session)
+        })
 
-    // function getAllProd() {
-    //     Axios.get('http://localhost:3256/getall')
-    //     .then(function(response) {
+        const {
+        data: { subscription },
+        } = supabase.auth.onAuthStateChange((_event, session) => {
+        setSession(session)
+        })
 
-    //         console.log('response successfully received, response below')
-    //         console.log(response)
-    //         setProds(response.data.rows);
+        Axios.get('http://localhost:3256/getall')
+            .then(response => {
+                setProds(response.data.rows);
+            })
+            .catch(error => {
+                console.error('Error fetching products:', error);
+            });
 
-    //     }).catch(function (error) {
-    //         console.log('response unsusccessfully received, error below')
-    //         console.log(error)
-    //     }).finally(function (){
-    //         console.log("This part is always executed no matter what")
-    //     })
-    // }
+        return () => subscription.unsubscribe()
+    }, [])
+
+    console.log(session);
+
+    const refreshProducts = () => {
+        Axios.get('http://localhost:3256/getall')
+            .then(response => {
+                setProds(response.data.rows);
+            })
+            .catch(error => {
+                console.error('Error fetching products:', error);
+            });
+    };
+
+    const handleBuy = (productId) => {
+
+        if (!session || !session.user) {
+            console.error("No user logged in!");
+            return;
+        }
+
+        console.log("BUYING", productId);
+
+        Axios.post('http://localhost:3256/buy', {
+            item: productId,
+            buyer: session.user.id,
+        })
+        .then(response => {
+            console.log("Product purchased successfully:", response.data);
+            refreshProducts();  // Refresh the list of products
+        })
+        .catch(error => {
+            console.error('Error purchasing product:', error);
+        });
+    };
 
     const categories = [
         {
@@ -102,6 +136,26 @@ function Home(props) {
                         <CategoryCard key={category.name} name={category.name} image={category.image} />
                     ))}
                 </div>
+            </div>
+
+            <div className="Product">
+                <h2>all available products:</h2>
+                <ul>
+                    {prods.map(item => (
+                        <li key={item.iid}>
+                            <strong>Product:</strong> {item.name}<br />
+                            <strong>Description:</strong> {item.description}<br />
+                            <strong>Category:</strong> {item.category}<br />
+                            <strong>Price:</strong> {item.price}<br />
+                            <strong>Seller:</strong> {item.seller}<br />
+                            {item.buyer ? (
+                                <><strong>Buyer:</strong> {item.buyer}<br /></>
+                            ) : (
+                                <button onClick={() => handleBuy(item.iid)}>Buy This</button>
+                            )}
+                        </li>
+                    ))}
+                </ul>
             </div>
         </div>
     );
