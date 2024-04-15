@@ -4,8 +4,12 @@ import { useEffect } from 'react';
 import { TextField } from '@mui/material';
 import Axios from 'axios';
 
+import { createClient } from '@supabase/supabase-js';
+
 import './Post.css';
 import Navbar from '../NavBar.js';
+
+const supabase = createClient(process.env.REACT_APP_MY_SUPABASE_URL, process.env.REACT_APP_MY_SUPABASE_KEY);
 
 function Post(props) {
 
@@ -13,8 +17,33 @@ function Post(props) {
     const [description, setDescription] = useState('')
     const [category, setCategory] = useState('')
     const [price, setPrice] = useState('')
-    const [id, setID] = useState('')
+    const [sellId, setSellID] = useState('')
     const [postStatus, setPostStatus] = useState('')
+
+    const [session, setSession] = useState(null)
+
+    useEffect(() => {
+        supabase.auth.getSession().then(({ data: { session } }) => {
+        setSession(session)
+        if (session && session.user) {
+            setSellID(session.user.id);  // Set seller ID here
+        }
+        })
+
+        const {
+        data: { subscription },
+        } = supabase.auth.onAuthStateChange((_event, session) => {
+        setSession(session)
+        if (session && session.user) {
+            setSellID(session.user.id);  // Set seller ID here
+        }
+        })
+
+        return () => subscription.unsubscribe()
+    }, [])
+
+    console.log(session);
+
 
     const post = () => {
 
@@ -26,7 +55,7 @@ function Post(props) {
                 description: description,
                 category : category,
                 price : price,
-                seller: id,
+                seller: sellId,
             }).then((response) => {
                 if (response.data.message) {
                     setPostStatus(response.data.message)
@@ -54,8 +83,6 @@ function Post(props) {
                         onChange={event => setCategory(event.target.value)}/>
                     <input type="text" placeholder="price"
                         onChange={event => setPrice(event.target.value)}/>
-                    <input type="text" placeholder="seller (id for now)"
-                        onChange={event => setID(event.target.value)}/>
                     <button onClick={post}>post!</button>
                 </div>
 
