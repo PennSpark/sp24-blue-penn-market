@@ -12,14 +12,12 @@ const supabase = createClient(process.env.REACT_APP_MY_SUPABASE_URL, process.env
 
 
 function SellerDashBoard(props) {
-
-
   const products = [
     {
       id: 1,
       name: "University Physics Textbook",
-      imageSrc: "https://cdn.builder.io/api/v1/image/assets/TEMP/ff57c1f5853a5b6e4d96294f97432d2a7f5de286a43f024a8e481fc2076bed39?apiKey=b8d09a4545bb49a8a3d7500b55db7534&",
-      thumbnailSrc: "https://cdn.builder.io/api/v1/image/assets/TEMP/ece074034a620059676330e1952b29092d6f889fab13e5afee7524114e09a39d?apiKey=b8d09a4545bb49a8a3d7500b55db7534&",
+      imageSrc:  "https://cdn.builder.io/api/v1/image/assets/TEMP/ece074034a620059676330e1952b29092d6f889fab13e5afee7524114e09a39d?apiKey=b8d09a4545bb49a8a3d7500b55db7534&",
+      //thumbnailSrc: "https://cdn.builder.io/api/v1/image/assets/TEMP/ece074034a620059676330e1952b29092d6f889fab13e5afee7524114e09a39d?apiKey=b8d09a4545bb49a8a3d7500b55db7534&",
       status: "Sold",
       price: 500,
     },

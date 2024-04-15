@@ -135,7 +135,7 @@ function Home(props) {
                 </div>
             </div>
 
-            <div className="Product">
+            {/* <div className="Product">
                 <h2>all available products:</h2>
                 <ul>
                     {prods.map(item => (
@@ -153,7 +153,7 @@ function Home(props) {
                         </li>
                     ))}
                 </ul>
-            </div>
+            </div> */}
         </div>
     );
 }

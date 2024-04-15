@@ -62,26 +62,52 @@ function Post(props) {
             });
         }
     };
-
-
     return (
         <div className="post">
             <Header />
             <div className="postContainer">
                 <h1>Post something!</h1>
-                <TextField variant="outlined" fullWidth margin="normal" placeholder="Name"
-                    onChange={event => setName(event.target.value)} />
-                <TextField variant="outlined" fullWidth margin="normal" placeholder="Description"
-                    onChange={event => setDescription(event.target.value)} />
-                <TextField variant="outlined" fullWidth margin="normal" placeholder="Category"
-                    onChange={event => setCategory(event.target.value)} />
-                <TextField variant="outlined" fullWidth margin="normal" placeholder="Price"
-                    onChange={event => setPrice(event.target.value)} />
+                <TextField 
+                    variant="outlined" 
+                    fullWidth 
+                    margin="normal" 
+                    placeholder="Name"
+                    onChange={event => setName(event.target.value)} 
+                />
+                <TextField 
+                    variant="outlined" 
+                    fullWidth 
+                    margin="normal" 
+                    placeholder="Description"
+                    onChange={event => setDescription(event.target.value)} 
+                />
+                {/* Dropdown for Category */}
+                <select
+                    className="categoryDropdown"
+                    value={category}
+                    onChange={event => setCategory(event.target.value)}
+                    style={{ width: '100%', height: 56, margin: '8px 0', padding: '10px' }}
+                >
+                    <option value="">select category</option>
+                    <option value="Education">education</option>
+                    <option value="Electronics">electronics</option>
+                    <option value="Furniture">furniture</option>
+                    <option value="Housing">housing</option>
+                    <option value="Lifestyle">lifestyle</option>
+                </select>
+                <TextField 
+                    variant="outlined" 
+                    fullWidth 
+                    margin="normal" 
+                    placeholder="Price"
+                    onChange={event => setPrice(event.target.value)} 
+                />
                 <button className="postButton" onClick={post}>Post</button>
                 <h2>{postStatus}</h2>
             </div>
         </div>
     );
+    
 };
 
 export default Post;

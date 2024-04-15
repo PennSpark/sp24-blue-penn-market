@@ -6,6 +6,7 @@ import { ThemeSupa } from '@supabase/auth-ui-shared';
 import Home from './components/pages/Home';
 import Login from './components/pages/Login';
 import './App.css';
+import './components/pages/Login.css';
 
 const supabase = createClient(process.env.REACT_APP_MY_SUPABASE_URL, process.env.REACT_APP_MY_SUPABASE_KEY);
 
@@ -58,23 +59,27 @@ function App() {
 
   if (!session) {
     return (
-      <div style={{ maxWidth: '400px', margin: "30px" }}>
-        <p>Note: Please use your UPenn email.</p>
-        <Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} providers={[]}/>
+      <div className="App-background">
+        <div className="App-container">
+          <p>Note: Please use your UPenn email!</p>
+          <Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} providers={[]} />
+        </div>
       </div>
     );
   } else if (!loginStatus) {
     return (
-      <div className="Login">
-        <Login email={session.user.email} id={session.user.id} />
+      <div className="App-background">
+        <div className="App-container">
+          <Login email={session.user.email} id={session.user.id} />
+        </div>
       </div>
     );
   } else {
     return (
       <div className="App">
-        <Home/>
+        <Home />
         <div>HI! You are logged in! Your user ID is {session.user.id}. Email is {session.user.email}.</div>
-        <button onClick={async () => {
+        <button className="postButton" onClick={async () => {
           await supabase.auth.signOut();
           setLoginStatus(false); // Ensure login status is reset on sign out
         }}>
