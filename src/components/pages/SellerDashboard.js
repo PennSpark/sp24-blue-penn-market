@@ -1,4 +1,5 @@
 import * as React from "react";
+import Header from '../Header';
 
 const products = [
   {
@@ -55,41 +56,16 @@ function ProductStatus({ status }) {
 
 function SellerDashboard() {
   return (
+
     <div className="flex flex-col pt-4 pr-5 pb-20 bg-white">
-      <header className="flex flex-col max-w-full w-[328px]">
-        <div className="flex gap-5 justify-between self-start ml-12 max-md:ml-2.5">
-          <img
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/c40d0a288ee671ba5be3f24ca4603bfcf0d42e9867f2c572faa172ddf84cf432?apiKey=b8d09a4545bb49a8a3d7500b55db7534&"
-            alt=""
-            className="shrink-0 my-auto aspect-[1.52] w-[29px]"
-          />
-          <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/c122453f364ceda334f83a2bdc0ec727d39083f2b2d9ea685ae6edaffdcf014b?apiKey=b8d09a4545bb49a8a3d7500b55db7534&" alt="" className="shrink-0 aspect-[0.64] w-[60px]" />
-        </div>
-        <div className="flex overflow-hidden relative flex-col px-12 pt-10 pb-20 mt-20 text-4xl font-bold tracking-wide aspect-[0.41] max-md:px-5 max-md:mt-10">
-          <img
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/a3ff57182a2a32d2af98c5caef2f14d6d21f16eac8e33d7fbff0c4f497072bec?apiKey=b8d09a4545bb49a8a3d7500b55db7534&"
-            alt=""
-            className="object-cover absolute inset-0 size-full"
-          />
-          <h1 className="relative text-sky-500">My Products</h1>
-          <div className="relative mt-28 mb-96 text-black max-md:my-10">
-            Add Product
-          </div>
-        </div>
-      </header>
+      
       <main className="flex z-10 flex-col self-center pb-20 mt-0 w-full max-w-[1117px] max-md:mt-0 max-md:max-w-full">
         <div className="flex gap-5 self-end max-w-full w-[1010px] max-md:flex-wrap">
+        
           <h2 className="flex-auto self-end mt-20 text-6xl font-bold tracking-wider text-black max-md:mt-10 max-md:max-w-full max-md:text-4xl">
+            <Header />
             Seller Dashboard
           </h2>
-          <div className="flex gap-5 justify-between">
-            <img
-              src="https://cdn.builder.io/api/v1/image/assets/TEMP/cfd3a6192f755da2618d8dcccc7f7d3eedd62776a4d3e0747a2ce010a294540e?apiKey=b8d09a4545bb49a8a3d7500b55db7534&"
-              alt=""
-              className="shrink-0 self-start mt-1 aspect-square w-[51px]"
-            />
-            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/3dd8408a25fbdb75664558fa7bd1bc30a5f2ee824aed909827f9d708c4d90a9e?apiKey=b8d09a4545bb49a8a3d7500b55db7534&" alt="" className="shrink-0 aspect-[0.68] w-[99px]" />
-          </div>
         </div>
         <h3 className="mt-10 text-3xl font-bold tracking-wide text-black max-md:max-w-full">
           Product Name

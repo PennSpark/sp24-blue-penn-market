@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Header from '../Header';
 import { useEffect } from 'react';
 import { TextField } from '@mui/material';
 import Axios from 'axios';
@@ -38,6 +39,7 @@ function Post(props) {
 
     return (
         <> 
+            <Header />
             <Navbar></Navbar>
             <h2>post</h2>
 

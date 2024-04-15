@@ -14,7 +14,7 @@ const VideoTutorial = () => {
                 <p>Need help with navigating the platform?</p>
                 <p>Watch our tutorial video below!</p>
                 <iframe
-                    width="560"
+                    width="400"
                     height="315"
                     src="https://www.youtube.com/embed/rdVcT09dEf8?si=LLjQ0l5nyPsle05L&amp;start=6"
                     title="YouTube video player"

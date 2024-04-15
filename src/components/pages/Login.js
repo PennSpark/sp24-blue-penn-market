@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { TextField } from '@mui/material';
 import Axios from 'axios';
+import Header from '../Header';
 
 import './Login.css';
 import NavBar from '../NavBar.js';
@@ -53,10 +54,12 @@ function Login(props) {
 
     return (
         <>
+        <Header />
         <NavBar></NavBar>
         <h2>login</h2>
 
         <div className = "Login">
+            
             <div className="Registration">
                 <h1>New User</h1>
                 <input type="text" placeholder="username" 
