@@ -10,9 +10,11 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
     width: 100%;
     padding: 20px;
-    margin-top: 40px;
+    margin-top: 20px;
+    overflow: hidden;
 }
 
 .header-content {
@@ -45,7 +47,8 @@ body {
     font-family: 'Karla', sans-serif;
     font-weight: bold;
     font-size: 30px;
-    margin-right: 70px;
+    margin-right: 60px;
+    margin-left: 40px;
 }
 
 .header-user {
@@ -66,4 +69,15 @@ body {
     color: #0788FF;
     font-family: 'Karla', sans-serif;
     font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .header-title, .header-link, .user-login {
+        font-size: 20px;
+    }
+
+    .header-link {
+        margin-right: 20px;
+        margin-left: 10px;
+    }
 }

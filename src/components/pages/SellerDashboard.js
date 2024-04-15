@@ -1,5 +1,6 @@
 import * as React from "react";
 import Header from '../Header';
+import './SellerDashboard.css';
 
 const products = [
   {
@@ -19,22 +20,22 @@ const products = [
 
 function ProductCard({ product }) {
   return (
-    <div className="flex flex-col mt-16 max-w-full w-[338px] max-md:mt-10">
-      <div className="flex overflow-hidden relative flex-col justify-center items-center px-16 w-full border border-black border-solid aspect-[1.84] max-md:px-5">
+    <div className="product-card">
+      <div className="product-image-container">
         <img
           src={product.imageSrc}
           alt=""
-          className="object-cover absolute inset-0 size-full"
+          className="product-image"
         />
         {product.thumbnailSrc && (
           <img
             src={product.thumbnailSrc}
             alt={product.name}
-            className="max-w-full border border-black border-solid aspect-[1.06] w-[195px]"
+            className="product-thumbnail"
           />
         )}
       </div>
-      <div className="mt-6 text-xl font-bold tracking-wide text-black">
+      <div className="product-name">
         Name: {product.name}
       </div>
     </div>
@@ -43,12 +44,12 @@ function ProductCard({ product }) {
 
 function ProductStatus({ status }) {
   return (
-    <div className="flex z-10 gap-2 self-center px-5 py-2.5 mt-0 ml-32 text-xl font-bold tracking-wide text-white whitespace-nowrap bg-sky-500 rounded-2xl border border-black border-solid">
-      <div className="grow">{status}</div>
+    <div className="product-status">
+      <div className="status-text">{status}</div>
       <img
         src={status === "Sold" ? "https://cdn.builder.io/api/v1/image/assets/TEMP/a024fbed528f73aa602bf9ae65005c45032408554b2b006eb0db5d3d40d82c31?apiKey=b8d09a4545bb49a8a3d7500b55db7534&" : "https://cdn.builder.io/api/v1/image/assets/TEMP/a024fbed528f73aa602bf9ae65005c45032408554b2b006eb0db5d3d40d82c31?apiKey=b8d09a4545bb49a8a3d7500b55db7534&"}
         alt=""
-        className="shrink-0 my-auto border border-white border-solid aspect-[1.89] fill-white stroke-[1px] stroke-white w-[15px]"
+        className="status-icon"
       />
     </div>
   );
@@ -56,37 +57,19 @@ function ProductStatus({ status }) {
 
 function SellerDashboard() {
   return (
-
-    <div className="flex flex-col pt-4 pr-5 pb-20 bg-white">
-      
-      <main className="flex z-10 flex-col self-center pb-20 mt-0 w-full max-w-[1117px] max-md:mt-0 max-md:max-w-full">
-        <div className="flex gap-5 self-end max-w-full w-[1010px] max-md:flex-wrap">
-        
-          <h2 className="flex-auto self-end mt-20 text-6xl font-bold tracking-wider text-black max-md:mt-10 max-md:max-w-full max-md:text-4xl">
-            <Header />
-            Seller Dashboard
-          </h2>
-        </div>
-        <h3 className="mt-10 text-3xl font-bold tracking-wide text-black max-md:max-w-full">
-          Product Name
-        </h3>
-        <h3 className="z-10 self-center mt-0 ml-36 text-3xl font-bold tracking-wide text-black">
-          Product Status
-        </h3>
+    <div className="seller-dashboard">
+      <Header />
+      <h2 className="dashboard-title">Seller Dashboard</h2>
+      <div className="products-container">
         {products.map((product) => (
           <React.Fragment key={product.id}>
-            <ProductCard product={product} />
-            <ProductStatus status={product.status} />
-            <img
-              src={product.id === 1 ? "https://cdn.builder.io/api/v1/image/assets/TEMP/a32492716550206900f6c80ecd5055ea28a4baf1b5ab13699dda7a39187f8d1b?apiKey=b8d09a4545bb49a8a3d7500b55db7534&" : "https://cdn.builder.io/api/v1/image/assets/TEMP/b2cc632d1738d4a95a37948e5ee84f87dce1115ec0dc933ebef29c9b2584ae3c?apiKey=b8d09a4545bb49a8a3d7500b55db7534&"}
-              alt=""
-              className={`self-end ${
-                product.id === 1 ? "-mt-11" : "mt-0"
-              } mr-12 w-7 aspect-square max-md:mr-2.5`}
-            />
+            <div className="product-layout" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
+              <ProductCard product={product} />
+              <ProductStatus status={product.status} />
+            </div>
           </React.Fragment>
         ))}
-      </main>
+      </div>
     </div>
   );
 }

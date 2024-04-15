@@ -3,11 +3,8 @@ import Header from '../Header';
 import { useEffect } from 'react';
 import { TextField } from '@mui/material';
 import Axios from 'axios';
-
 import { createClient } from '@supabase/supabase-js';
-
 import './Post.css';
-import Navbar from '../NavBar.js';
 
 const supabase = createClient(process.env.REACT_APP_MY_SUPABASE_URL, process.env.REACT_APP_MY_SUPABASE_KEY);
 
@@ -24,19 +21,19 @@ function Post(props) {
 
     useEffect(() => {
         supabase.auth.getSession().then(({ data: { session } }) => {
-        setSession(session)
-        if (session && session.user) {
-            setSellID(session.user.id);  // Set seller ID here
-        }
+            setSession(session)
+            if (session && session.user) {
+                setSellID(session.user.id);  // Set seller ID here
+            }
         })
 
         const {
-        data: { subscription },
+            data: { subscription },
         } = supabase.auth.onAuthStateChange((_event, session) => {
-        setSession(session)
-        if (session && session.user) {
-            setSellID(session.user.id);  // Set seller ID here
-        }
+            setSession(session)
+            if (session && session.user) {
+                setSellID(session.user.id);  // Set seller ID here
+            }
         })
 
         return () => subscription.unsubscribe()
@@ -53,8 +50,8 @@ function Post(props) {
             Axios.post('http://localhost:3256/post', {
                 name: name,
                 description: description,
-                category : category,
-                price : price,
+                category: category,
+                price: price,
                 seller: sellId,
             }).then((response) => {
                 if (response.data.message) {
@@ -66,29 +63,24 @@ function Post(props) {
         }
     };
 
+
     return (
-        <> 
+        <div className="post">
             <Header />
-            <Navbar></Navbar>
-            <h2>post</h2>
-
-            <div className = "Post">
-                <div className="PostProduct">
-                    <h1>post something!</h1>
-                    <input type="text" placeholder="name" 
-                        onChange={event => setName(event.target.value)}/>
-                    <input type="text" placeholder="description"
-                        onChange={event => setDescription(event.target.value)}/>
-                    <input type="text" placeholder="category"
-                        onChange={event => setCategory(event.target.value)}/>
-                    <input type="text" placeholder="price"
-                        onChange={event => setPrice(event.target.value)}/>
-                    <button onClick={post}>post!</button>
-                </div>
-
+            <div className="postContainer">
+                <h1>Post something!</h1>
+                <TextField variant="outlined" fullWidth margin="normal" placeholder="Name"
+                    onChange={event => setName(event.target.value)} />
+                <TextField variant="outlined" fullWidth margin="normal" placeholder="Description"
+                    onChange={event => setDescription(event.target.value)} />
+                <TextField variant="outlined" fullWidth margin="normal" placeholder="Category"
+                    onChange={event => setCategory(event.target.value)} />
+                <TextField variant="outlined" fullWidth margin="normal" placeholder="Price"
+                    onChange={event => setPrice(event.target.value)} />
+                <button className="postButton" onClick={post}>Post</button>
                 <h2>{postStatus}</h2>
+            </div>
         </div>
-        </>
     );
 };
 

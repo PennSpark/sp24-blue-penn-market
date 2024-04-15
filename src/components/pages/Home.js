@@ -11,7 +11,6 @@ import slide2 from '../assets/penn market slide 2.PNG';
 import slide3 from '../assets/penn market slide 3.PNG';
 import slide4 from '../assets/penn market slide 4.PNG';
 
-
 const supabase = createClient(process.env.REACT_APP_MY_SUPABASE_URL, process.env.REACT_APP_MY_SUPABASE_KEY);
 
 function Home(props) {
@@ -116,7 +115,7 @@ function Home(props) {
 
     return (
         <div className="home">
-            <Navbar />
+            {/* <Navbar /> */}
             <Header />
             <SearchBar />
             <div className="image-slider">
