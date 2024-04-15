@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import Axios from 'axios';
-import Header from '../Header';
-
 import './Login.css';
 
 function Login(props) {
@@ -19,7 +17,7 @@ function Login(props) {
             setRegStatus('Please input a username or password.')
         } else {
             Axios.post('http://localhost:3256/register', {
-                username : userReg,
+                username: userReg,
                 email: email,
                 id: id,
             }).then((response) => {
@@ -37,17 +35,15 @@ function Login(props) {
 
     return (
         <>
-        <div className = "Login">
-            
-            <div className="Registration">
-                <h1>set a display name :D</h1>
-                <input type="text" placeholder="display name" 
-                    onChange={event => setUserReg(event.target.value)}/>
-                <button onClick={register}>let's go!</button>
+            <div className="Login">
+                <div className="Registration">
+                    <h1>Set a display name :D</h1>
+                    <input type="text" className="TextField" placeholder="Display name"
+                        onChange={event => setUserReg(event.target.value)} />
+                    <button className="postButton" onClick={register}>Let's go!</button>
+                </div>
+                <h2>{regStatus}</h2>
             </div>
-
-            <h2>{regStatus}</h2>
-        </div>
         </>
     );
 };

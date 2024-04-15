@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@700&display=swap');
+
+.product-status {
+  width: 120px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  padding: 5px 10px;
+  margin-top: 10px;
+  background-color: #007BFF;
+  border: 1px solid black;
+  border-radius: 15px;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  justify-content: center;
+  font-family: 'Karla', sans-serif;
+}
+
+.status-text {
+  flex-grow: 1;
+  font-family: 'Karla', sans-serif;
+}
+
+.status-icon {
+  width: 15px;
+  height: auto;
+  margin-left: 5px;
+}
+
+@media (max-width: 600px) {
+  .some-large-element {
+    width: 100%;
+    max-height: 200px;
+    overflow-y: scroll;
+  }
+}

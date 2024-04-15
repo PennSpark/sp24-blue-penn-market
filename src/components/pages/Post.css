@@ -38,8 +38,8 @@
 }
 
 .TextField {
-    width: 100%; /* Full width of the container */
-    margin-bottom: 15px; /* Space between fields */
+    width: 100%;
+    margin-bottom: 15px;
     font-family: 'Karla', sans-serif;
     border-radius: 15px;
 }

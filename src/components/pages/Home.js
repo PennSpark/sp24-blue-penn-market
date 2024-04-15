@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { createClient } from '@supabase/supabase-js';
 import Axios from 'axios';
-
-import Navbar from '../NavBar';
 import Header from '../Header';
 import SearchBar from '../SearchBar';
 import CategoryCard from '../CategoryCard';
