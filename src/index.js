@@ -9,6 +9,7 @@ import Post from './components/pages/Post';
 import Login from './components/pages/Login';
 import VideoTutorial from './components/pages/VideoTutorial'; 
 import SellerDashboard from './components/pages/SellerDashboard'; 
+import Education from './components/pages/Education';
 
 
 import {createBrowserRouter, RouterProvider, Route} from "react-router-dom";
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
     path: "/login", 
     element: <Login/>,
   },
+  {
+    path:"/education",
+    element: <Education/>,
+  }
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
