@@ -10,6 +10,10 @@ import Login from './components/pages/Login';
 import VideoTutorial from './components/pages/VideoTutorial'; 
 import SellerDashboard from './components/pages/SellerDashboard'; 
 import Education from './components/pages/Education';
+import Electronics from './components/pages/Electronics';
+import Furniture from './components/pages/Furniture';
+import Housing from './components/pages/Housing';
+import Lifestyle from './components/pages/Lifestyle';
 
 
 import {createBrowserRouter, RouterProvider, Route} from "react-router-dom";
@@ -38,7 +42,23 @@ const router = createBrowserRouter([
   {
     path:"/education",
     element: <Education/>,
-  }
+  },
+  {
+    path:"/electronics",
+    element: <Electronics/>,
+  },
+  {
+    path:"/furniture",
+    element: <Furniture/>,
+  },
+  {
+    path:"/housing",
+    element: <Housing/>,
+  },
+  {
+    path:"/lifestyle",
+    element: <Lifestyle/>,
+  },
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

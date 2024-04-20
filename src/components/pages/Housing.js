@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { createClient } from '@supabase/supabase-js';
 import Axios from 'axios';
 import Header from '../Header';
-import './Education.css';
+import './SellerDashboard.css';
 import ProductCard from '../ProductCard';
 import ProductStatus from '../ProductStatus';
 
@@ -11,7 +11,7 @@ import ProductStatus from '../ProductStatus';
 const supabase = createClient(process.env.REACT_APP_MY_SUPABASE_URL, process.env.REACT_APP_MY_SUPABASE_KEY);
 
 
-function Education(props) {
+function SellerDashBoard(props) {
   
   const [prods, setProds] = useState([]);
   const [session, setSession] = useState(null)
@@ -34,7 +34,7 @@ function Education(props) {
       setSession(session)
     })
 
-    Axios.post('http://localhost:3256/search', {category: "Education",})
+    Axios.post('http://localhost:3256/search', {category: "Housing",})
       .then(response => {
         setProds(response.data.rows);
       })
@@ -48,7 +48,7 @@ function Education(props) {
   console.log(session);
 
   const refreshProducts = () => {
-    Axios.post('http://localhost:3256/search', {category: "Education",})
+    Axios.post('http://localhost:3256/search', {category: "Housing",})
       .then(response => {
         if (response.data.message) {
             setRegStatus(response.data.message)
@@ -85,7 +85,7 @@ function Education(props) {
   return (
     <div className="seller-dashboard">
       <Header />
-      <h2 className="dashboard-title">Education Products</h2>
+      <h2 className="dashboard-title">Housing Products</h2>
       <div className="dashboard-grid">
         <div className="sidebar">
           <Link
@@ -123,4 +123,4 @@ function Education(props) {
   )
 }
 
-export default Education;
+export default SellerDashBoard;

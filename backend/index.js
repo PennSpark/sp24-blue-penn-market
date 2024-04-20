@@ -283,7 +283,7 @@ app.post('/buy', async (req, res) => {
 
 })
 
-app.post('/education', async (req, res) => {
+app.post('/search', async (req, res) => {
 
     const response = await categorySearch(req.body.category);
 

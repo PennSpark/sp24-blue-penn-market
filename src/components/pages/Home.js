@@ -76,23 +76,27 @@ function Home(props) {
         {
             name: "Education",
             image: "https://cdn.builder.io/api/v1/image/assets/TEMP/304a9e00e713d370d5920c1724927c1d891943d42c54f6944bb1fc88a1db3c31?apiKey=b8d09a4545bb49a8a3d7500b55db7534&",
-            path: "/education"
+            path: "/education",
         },
         {
             name: "Electronics",
             image: "https://cdn.builder.io/api/v1/image/assets/TEMP/fb6243c2905e98f09bcb9aaf6f0c04725f9f36a2d3f85af5c3f4951dd5e12fe5?apiKey=b8d09a4545bb49a8a3d7500b55db7534&",
+            path: "/electronics",
         },
         {
             name: "Furniture",
             image: "https://cdn.builder.io/api/v1/image/assets/TEMP/a08a5727b2db808e70ebb1870b6fbf1da0923121dfc0a7126927c927c25c5ba1?apiKey=b8d09a4545bb49a8a3d7500b55db7534&",
+            path: "/furniture",
         },
         {
             name: "Housing",
             image: "https://cdn.builder.io/api/v1/image/assets/TEMP/b4b17bd5666e630bb1e41b1978cb63f686a352a2005455bc702e07c7427b3bab?apiKey=b8d09a4545bb49a8a3d7500b55db7534&",
+            path: "/housing",
         },
         {
             name: "Lifestyle",
             image: "https://cdn.builder.io/api/v1/image/assets/TEMP/c917e54a327eebad9e19642cc2ff8fb70cc71ada02b7aa930f31066e85332ce7?apiKey=b8d09a4545bb49a8a3d7500b55db7534&",
+            path: "/lifestyle",
         },
     ];
 
