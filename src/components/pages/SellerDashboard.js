@@ -130,10 +130,10 @@ function SellerDashBoard(props) {
               <h3>Product Name</h3>
               <h3>Product Status</h3>
             </div>
-            {prods.map(prod => ( 
-              <div key={prod.iid} className="product-row">
-                <ProductCard prods={prod} handleBuy={handleBuy} />
-                <ProductStatus status={prod.status} />
+            {prods.map(prods => ( 
+              <div key={prods.iid} className="product-row">
+                <ProductCard prods={prods} handleBuy={handleBuy} />
+                <ProductStatus status={prods.buyer ? "Sold" : "Selling"} />
               </div>
             ))}
           </div>

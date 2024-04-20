@@ -152,7 +152,7 @@ async function getAllProd() {
     // ADD USER SESSION... for now just using 33 bc i know it will be in user database
     const queryText = 'SELECT i.iid, i.name, i.description, i.category, i.price, u1.username AS seller, u2.username AS buyer FROM items AS i JOIN login AS u1 ON i.seller = u1.uid LEFT JOIN login AS u2 ON i.buyer = u2.uid';
     res = await client.query(queryText);
-
+    
     //close connection
     await client.end();
 
