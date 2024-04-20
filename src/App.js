@@ -8,7 +8,9 @@ import Login from './components/pages/Login';
 import './App.css';
 import './components/pages/Login.css';
 
+console.log("here1");
 const supabase = createClient(process.env.REACT_APP_MY_SUPABASE_URL, process.env.REACT_APP_MY_SUPABASE_KEY);
+console.log("here2");
 
 function App() {
   const [session, setSession] = useState(null);

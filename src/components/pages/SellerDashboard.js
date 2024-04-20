@@ -20,6 +20,8 @@ function SellerDashBoard(props) {
       //thumbnailSrc: "https://cdn.builder.io/api/v1/image/assets/TEMP/ece074034a620059676330e1952b29092d6f889fab13e5afee7524114e09a39d?apiKey=b8d09a4545bb49a8a3d7500b55db7534&",
       status: "Sold",
       price: 500,
+      category: "Education",
+      seller: "bob"
     },
     {
       id: 2,
@@ -27,6 +29,8 @@ function SellerDashBoard(props) {
       imageSrc: "https://cdn.builder.io/api/v1/image/assets/TEMP/1f4cc14badd8850daa89cb3021f838ae4dacd6c03a650477f82d22a1a7e786fd?apiKey=b8d09a4545bb49a8a3d7500b55db7534&",
       status: "Selling",
       price: 300,
+      category: "Education",
+      seller: "jeff"
     },
   ];
 
@@ -84,6 +88,7 @@ function SellerDashBoard(props) {
 
     Axios.post('http://localhost:3256/buy', {
       item: productId,
+      
       buyer: session.user.id,
     })
       .then(response => {
@@ -122,10 +127,15 @@ function SellerDashBoard(props) {
               <h3>Product Name</h3>
               <h3>Product Status</h3>
             </div>
-            {products.map(product => (
-              <div key={product.id} className="product-row">
-                <ProductCard product={product} />
-                <ProductStatus status={product.status} />
+            {prods.map(prods => (
+              <div key={prods.iid} className="product-row">
+                <ProductCard prods={prods} />
+                <ProductStatus status={"selling"} />
+
+
+
+                
+
               </div>
             ))}
           </div>
@@ -133,7 +143,7 @@ function SellerDashBoard(props) {
         </div>
       </div>
 
-      <div className="Product">
+      {/* <div className="Product">
         <h2>all available products:</h2>
         <ul>
           {prods.map(item => (
@@ -151,7 +161,7 @@ function SellerDashBoard(props) {
             </li>
           ))}
         </ul>
-      </div>
+      </div> */}
     </div>
   )
 }

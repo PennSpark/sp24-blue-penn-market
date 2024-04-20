@@ -1,28 +1,24 @@
 import React from 'react';
 import './ProductCard.css';
 
-function ProductCard({ product }) {
+function ProductCard({ prods }) {
   return (
     <div className="product-card">
-      <div className="product-image-container">
-        <img
-          src={product.imageSrc}
-          alt=""
-          className="product-image"
-        />
-        {product.thumbnailSrc && (
-          <img
-            src={product.thumbnailSrc}
-            alt={product.name}
-            className="product-thumbnail"
-          />
-        )}
-      </div>
+      
       <div className="product-name">
-        Name: {product.name}
+        {prods.name}
       </div>
       <div className="product-price"> 
-        Price: ${product.price}
+        Price: ${prods.price}
+      </div>
+      <div className="product-category"> 
+        Category: {prods.category}
+      </div>
+      <div className="product-seller"> 
+        Seller: {prods.seller}
+      </div>
+      <div className="product-description"> 
+        Description: {prods.description}
       </div>
     </div>
   );
