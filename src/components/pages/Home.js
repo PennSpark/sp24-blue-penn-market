@@ -76,6 +76,7 @@ function Home(props) {
         {
             name: "Education",
             image: "https://cdn.builder.io/api/v1/image/assets/TEMP/304a9e00e713d370d5920c1724927c1d891943d42c54f6944bb1fc88a1db3c31?apiKey=b8d09a4545bb49a8a3d7500b55db7534&",
+            path: "/education"
         },
         {
             name: "Electronics",
@@ -130,7 +131,7 @@ function Home(props) {
                 <h2 className="category-search-title">Category Search</h2>
                 <div className="category-cards-container">
                     {categories.map((category) => (
-                        <CategoryCard key={category.name} name={category.name} image={category.image} />
+                        <CategoryCard key={category.name} name={category.name} image={category.image} path={category.path} />
                     ))}
                 </div>
             </div>

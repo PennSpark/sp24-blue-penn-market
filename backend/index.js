@@ -14,7 +14,7 @@ async function registerIntoDB(name, email, id) {
         //replace the fields with your information
         user: 'postgres',
         database: 'pennmarket',
-        password: 'David is so awesome David is so awesome', 
+        password: 'strokeseat', 
         port: 5432,
     });
 
@@ -52,7 +52,7 @@ async function postProduct(name, des, cat, price, sell) {
         //replace the fields with your information
         user: 'postgres',
         database: 'pennmarket',
-        password: 'David is so awesome David is so awesome', 
+        password: 'strokeseat', 
         port: 5432,
     });
 
@@ -93,7 +93,7 @@ async function buyProduct(iid, buy) {
         //replace the fields with your information
         user: 'postgres',
         database: 'pennmarket',
-        password: 'David is so awesome David is so awesome', 
+        password: 'strokeseat', 
         port: 5432,
     });
 
@@ -131,6 +131,33 @@ async function buyProduct(iid, buy) {
     return res;
 }
 
+async function categorySearch(category) {
+    //create client
+    const client = new pg.Client({
+        //if you want the following to work on your own computer
+        //replace the fields with your information
+        user: 'postgres',
+        database: 'pennmarket',
+        password: 'strokeseat', 
+        port: 5432,
+    });
+
+    //connect client
+    await client.connect();
+
+    const tableName = 'items';
+
+    // ADD USER SESSION
+    const queryText = 'SELECT i.iid, i.name, i.description, i.category, i.price, u1.username AS seller, u2.username AS buyer FROM items AS i JOIN login AS u1 ON i.seller = u1.uid LEFT JOIN login AS u2 ON i.buyer = u2.uid WHERE category = $1';
+    const values = [category];
+    const res = await client.query(queryText, values);
+
+    //close connection
+    await client.end();
+
+    return res;
+}
+
 // getting all
 async function getAllProd() {
 
@@ -140,7 +167,7 @@ async function getAllProd() {
         //replace the fields with your information
         user: 'postgres',
         database: 'pennmarket',
-        password: 'David is so awesome David is so awesome', 
+        password: 'strokeseat', 
         port: 5432,
     });
 
@@ -168,7 +195,7 @@ async function checkUserExists(id) {
         //replace the fields with your information
         user: 'postgres',
         database: 'pennmarket',
-        password: 'David is so awesome David is so awesome', 
+        password: 'strokeseat', 
         port: 5432,
     });
 
@@ -255,6 +282,19 @@ app.post('/buy', async (req, res) => {
     }
 
 })
+
+app.post('/education', async (req, res) => {
+
+    const response = await categorySearch(req.body.category);
+
+    if (response != null) {
+        res.send(response);
+    } else {
+        res.send({message: "No results."})
+    }
+
+})
+
 
 app.get('/getall', async (req, res) => {
 
