@@ -98,7 +98,10 @@ function SellerDashBoard(props) {
       .catch(error => {
         console.error('Error purchasing product:', error);
       });
+
+      
   };
+
 
   return (
     <div className="seller-dashboard">
@@ -127,15 +130,10 @@ function SellerDashBoard(props) {
               <h3>Product Name</h3>
               <h3>Product Status</h3>
             </div>
-            {prods.map(prods => (
-              <div key={prods.iid} className="product-row">
-                <ProductCard prods={prods} />
-                <ProductStatus status={"selling"} />
-
-
-
-                
-
+            {prods.map(prod => ( 
+              <div key={prod.iid} className="product-row">
+                <ProductCard prods={prod} handleBuy={handleBuy} />
+                <ProductStatus status={prod.status} />
               </div>
             ))}
           </div>

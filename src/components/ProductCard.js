@@ -1,7 +1,12 @@
 import React from 'react';
 import './ProductCard.css';
+import handleBuy from './pages/SellerDashboard.js';
 
-function ProductCard({ prods }) {
+
+
+
+function ProductCard({ prods, handleBuy }) {
+
   return (
     <div className="product-card">
       
@@ -19,6 +24,15 @@ function ProductCard({ prods }) {
       </div>
       <div className="product-description"> 
         Description: {prods.description}
+      </div>
+      <div className="product-bought"> 
+      {prods.buyer ? (
+                <><strong>Buyer:</strong> {prods.buyer}<br/></>
+              ) : (
+                <button onClick={() => handleBuy(prods.iid)}>Buy This</button>
+              )}
+
+      
       </div>
     </div>
   );
