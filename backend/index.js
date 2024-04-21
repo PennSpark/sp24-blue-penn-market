@@ -158,6 +158,33 @@ async function categorySearch(category) {
     return res;
 }
 
+async function myProducts(id) {
+    //create client
+    const client = new pg.Client({
+        //if you want the following to work on your own computer
+        //replace the fields with your information
+        user: 'postgres',
+        database: 'pennmarket',
+        password: 'strokeseat', 
+        port: 5432,
+    });
+
+    //connect client
+    await client.connect();
+
+    const tableName = 'items';
+
+    // ADD USER SESSION
+    const queryText = 'SELECT i.iid, i.name, i.description, i.category, i.price, u1.username AS seller, u2.username AS buyer FROM items AS i JOIN login AS u1 ON i.seller = u1.uid LEFT JOIN login AS u2 ON i.buyer = u2.uid WHERE i.seller = $1';
+    const values = [id];
+    const res = await client.query(queryText, values);
+
+    //close connection
+    await client.end();
+
+    return res;
+}
+
 // getting all
 async function getAllProd() {
 
@@ -286,6 +313,18 @@ app.post('/buy', async (req, res) => {
 app.post('/search', async (req, res) => {
 
     const response = await categorySearch(req.body.category);
+
+    if (response != null) {
+        res.send(response);
+    } else {
+        res.send({message: "No results."})
+    }
+
+})
+
+app.post('/self', async (req, res) => {
+
+    const response = await myProducts(req.body.id);
 
     if (response != null) {
         res.send(response);

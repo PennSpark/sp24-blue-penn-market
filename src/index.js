@@ -14,6 +14,7 @@ import Electronics from './components/pages/Electronics';
 import Furniture from './components/pages/Furniture';
 import Housing from './components/pages/Housing';
 import Lifestyle from './components/pages/Lifestyle';
+import MyProducts from './components/pages/MyProducts';
 
 
 import {createBrowserRouter, RouterProvider, Route} from "react-router-dom";
@@ -58,6 +59,10 @@ const router = createBrowserRouter([
   {
     path:"/lifestyle",
     element: <Lifestyle/>,
+  },
+  {
+    path:"/myproducts",
+    element: <MyProducts/>,
   },
 ]);
 
