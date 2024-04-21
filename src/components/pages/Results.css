@@ -22,7 +22,6 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding-top: 100px; 
 }
 
 
@@ -51,7 +50,6 @@ body {
   flex-direction: column; 
   background: linear-gradient(to bottom, #ffffff 0%, #DDEFFF 100%);
   gap: 20px;
-  min-height: 100vh;
 }
 
 .sidebar a {
@@ -82,7 +80,6 @@ body {
   align-items: center; 
   justify-content: space-between; 
   width: 100%; 
- 
   margin-bottom: 20px; 
 }
 
@@ -90,7 +87,6 @@ body {
   display: flex;
   justify-content: space-between; 
   align-items: center;
- 
   margin-bottom: 20px; 
 }
 
@@ -99,7 +95,6 @@ body {
   padding: 20px;
   background-color: #fff;
   overflow-y: auto; 
- 
 }
 
 .product-column h3, .status-column h3 {
@@ -109,4 +104,3 @@ body {
   font-weight: bold;
   font-size: 25px;
 }
-  

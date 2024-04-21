@@ -14,8 +14,8 @@ async function registerIntoDB(name, email, id) {
         //replace the fields with your information
         user: 'postgres',
         database: 'pennmarket',
-        password: 'Lowe6wedg', 
-        port: 5433,
+        password: 'strokeseat', 
+        port: 5432,
     });
 
     //connect client
@@ -52,8 +52,8 @@ async function postProduct(name, des, cat, price, sell) {
         //replace the fields with your information
         user: 'postgres',
         database: 'pennmarket',
-        password: 'Lowe6wedg', 
-        port: 5433,
+        password: 'strokeseat', 
+        port: 5432,
     });
 
     //connect client
@@ -93,8 +93,8 @@ async function buyProduct(iid, buy) {
         //replace the fields with your information
         user: 'postgres',
         database: 'pennmarket',
-        password: 'Lowe6wedg', 
-        port: 5433,
+        password: 'strokeseat', 
+        port: 5432,
     });
 
     //connect client
@@ -138,8 +138,8 @@ async function categorySearch(category) {
         //replace the fields with your information
         user: 'postgres',
         database: 'pennmarket',
-        password: 'Lowe6wedg', 
-        port: 5433,
+        password: 'strokeseat', 
+        port: 5432,
     });
 
     //connect client
@@ -148,7 +148,7 @@ async function categorySearch(category) {
     const tableName = 'items';
 
     // ADD USER SESSION
-    const queryText = 'SELECT i.iid, i.name, i.description, i.category, i.price, u1.username AS seller, u2.username AS buyer FROM items AS i JOIN login AS u1 ON i.seller = u1.uid LEFT JOIN login AS u2 ON i.buyer = u2.uid WHERE category = $1';
+    const queryText = 'SELECT i.iid, i.name, i.description, i.category, i.price, u1.username AS seller, u2.username AS buyer, u1.email AS email FROM items AS i JOIN login AS u1 ON i.seller = u1.uid LEFT JOIN login AS u2 ON i.buyer = u2.uid WHERE category = $1';
     const values = [category];
     const res = await client.query(queryText, values);
 
@@ -175,8 +175,37 @@ async function myProducts(id) {
     const tableName = 'items';
 
     // ADD USER SESSION
-    const queryText = 'SELECT i.iid, i.name, i.description, i.category, i.price, u1.username AS seller, u2.username AS buyer FROM items AS i JOIN login AS u1 ON i.seller = u1.uid LEFT JOIN login AS u2 ON i.buyer = u2.uid WHERE i.seller = $1';
+    const queryText = 'SELECT i.iid, i.name, i.description, i.category, i.price, u1.username AS seller, u2.username AS buyer, u1.email AS email FROM items AS i JOIN login AS u1 ON i.seller = u1.uid LEFT JOIN login AS u2 ON i.buyer = u2.uid WHERE i.seller = $1';
     const values = [id];
+    const res = await client.query(queryText, values);
+
+    //close connection
+    await client.end();
+
+    return res;
+}
+
+async function getResultsProd(search) {
+    //create client
+    const client = new pg.Client({
+        //if you want the following to work on your own computer
+        //replace the fields with your information
+        user: 'postgres',
+        database: 'pennmarket',
+        password: 'strokeseat', 
+        port: 5432,
+    });
+
+    //connect client
+    await client.connect();
+
+    const tableName = 'items';
+
+    // ADD USER SESSION
+    const searchWild = `%${search}%`;
+    const queryText = 'SELECT i.iid, i.name, i.description, i.category, i.price, u1.username AS seller, u2.username AS buyer, u1.email AS email FROM items AS i JOIN login AS u1 ON i.seller = u1.uid LEFT JOIN login AS u2 ON i.buyer = u2.uid WHERE i.name LIKE $1';
+    const values = [searchWild];
+
     const res = await client.query(queryText, values);
 
     //close connection
@@ -194,8 +223,8 @@ async function getAllProd() {
         //replace the fields with your information
         user: 'postgres',
         database: 'pennmarket',
-        password: 'Lowe6wedg', 
-        port: 5433,
+        password: 'strokeseat', 
+        port: 5432,
     });
 
     //connect client
@@ -204,7 +233,7 @@ async function getAllProd() {
     const tableName = 'items';
 
     // ADD USER SESSION... for now just using 33 bc i know it will be in user database
-    const queryText = 'SELECT i.iid, i.name, i.description, i.category, i.price, u1.username AS seller, u2.username AS buyer FROM items AS i JOIN login AS u1 ON i.seller = u1.uid LEFT JOIN login AS u2 ON i.buyer = u2.uid';
+    const queryText = 'SELECT i.iid, i.name, i.description, i.category, i.price, u1.username AS seller, u2.username AS buyer, u1.email AS email FROM items AS i JOIN login AS u1 ON i.seller = u1.uid LEFT JOIN login AS u2 ON i.buyer = u2.uid';
     res = await client.query(queryText);
     
     //close connection
@@ -222,15 +251,14 @@ async function checkUserExists(id) {
         //replace the fields with your information
         user: 'postgres',
         database: 'pennmarket',
-        password: 'Lowe6wedg', 
-        port: 5433,
+        password: 'strokeseat', 
+        port: 5432,
     });
 
     //connect client
     await client.connect();
 
     const tableName = 'login';
-    console.log(id);
 
     // ADD USER SESSION
     const queryText = 'SELECT * FROM ' + tableName + ' WHERE uid = $1';
@@ -321,6 +349,19 @@ app.post('/search', async (req, res) => {
     }
 
 })
+
+app.post('/results', async (req, res) => {
+
+    const response = await getResultsProd(req.body.search);
+
+    if (response != null) {
+        res.send(response);
+    } else {
+        res.send({message: "No results."})
+    }
+
+})
+
 
 app.post('/self', async (req, res) => {
 

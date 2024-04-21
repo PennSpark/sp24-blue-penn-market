@@ -22,6 +22,9 @@ function ProductCard({ prods, handleBuy }) {
       <div className="product-seller"> 
         Seller: {prods.seller}
       </div>
+      <div className="product-email"> 
+        Email: {prods.email}
+      </div>
       <div className="product-description"> 
         Description: {prods.description}
       </div>

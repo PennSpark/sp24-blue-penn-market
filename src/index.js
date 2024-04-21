@@ -15,6 +15,7 @@ import Furniture from './components/pages/Furniture';
 import Housing from './components/pages/Housing';
 import Lifestyle from './components/pages/Lifestyle';
 import MyProducts from './components/pages/MyProducts';
+import Results from './components/pages/Results';
 
 
 import {createBrowserRouter, RouterProvider, Route} from "react-router-dom";
@@ -63,6 +64,10 @@ const router = createBrowserRouter([
   {
     path:"/myproducts",
     element: <MyProducts/>,
+  },
+  {
+    path:"/results",
+    element: <Results search={window.location.search}/>,
   },
 ]);
 
