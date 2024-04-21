@@ -139,26 +139,6 @@ function Home(props) {
                     ))}
                 </div>
             </div>
-
-            {/* <div className="Product">
-                <h2>all available products:</h2>
-                <ul>
-                    {prods.map(item => (
-                        <li key={item.iid}>
-                            <strong>Product:</strong> {item.name}<br />
-                            <strong>Description:</strong> {item.description}<br />
-                            <strong>Category:</strong> {item.category}<br />
-                            <strong>Price:</strong> {item.price}<br />
-                            <strong>Seller:</strong> {item.seller}<br />
-                            {item.buyer ? (
-                                <><strong>Buyer:</strong> {item.buyer}<br /></>
-                            ) : (
-                                <button onClick={() => handleBuy(item.iid)}>Buy This</button>
-                            )}
-                        </li>
-                    ))}
-                </ul>
-            </div> */}
         </div>
     );
 }

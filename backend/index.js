@@ -14,8 +14,8 @@ async function registerIntoDB(name, email, id) {
         //replace the fields with your information
         user: 'postgres',
         database: 'pennmarket',
-        password: 'strokeseat', 
-        port: 5432,
+        password: 'Lowe6wedg', 
+        port: 5433,
     });
 
     //connect client
@@ -52,8 +52,8 @@ async function postProduct(name, des, cat, price, sell) {
         //replace the fields with your information
         user: 'postgres',
         database: 'pennmarket',
-        password: 'strokeseat', 
-        port: 5432,
+        password: 'Lowe6wedg', 
+        port: 5433,
     });
 
     //connect client
@@ -93,8 +93,8 @@ async function buyProduct(iid, buy) {
         //replace the fields with your information
         user: 'postgres',
         database: 'pennmarket',
-        password: 'strokeseat', 
-        port: 5432,
+        password: 'Lowe6wedg', 
+        port: 5433,
     });
 
     //connect client
@@ -138,8 +138,8 @@ async function categorySearch(category) {
         //replace the fields with your information
         user: 'postgres',
         database: 'pennmarket',
-        password: 'strokeseat', 
-        port: 5432,
+        password: 'Lowe6wedg', 
+        port: 5433,
     });
 
     //connect client
@@ -194,8 +194,8 @@ async function getAllProd() {
         //replace the fields with your information
         user: 'postgres',
         database: 'pennmarket',
-        password: 'strokeseat', 
-        port: 5432,
+        password: 'Lowe6wedg', 
+        port: 5433,
     });
 
     //connect client
@@ -222,8 +222,8 @@ async function checkUserExists(id) {
         //replace the fields with your information
         user: 'postgres',
         database: 'pennmarket',
-        password: 'strokeseat', 
-        port: 5432,
+        password: 'Lowe6wedg', 
+        port: 5433,
     });
 
     //connect client

@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Header.css';
+import './pages/Home.js';
+
 
 function Header() {
     return (
@@ -16,7 +18,7 @@ function Header() {
             <nav className="header-nav">
                 <Link to="/seller-dashboard" className="header-link">Seller Dashboard</Link>
                 <Link to="/video-tutorial" className="header-link">Video Tutorial</Link>
-                <Link to="/post" className="header-link">Post</Link> 
+                <Link to="/post" className="header-link">Post</Link>
             </nav>
             <div className="header-user">
                 <Link to="/">
@@ -26,7 +28,8 @@ function Header() {
                         className="user-avatar"
                     />
                 </Link>
-                <Link to="/login" className="user-login">Sign Out</Link>
+                {/* <Link to="/login" className="user-login">Sign Out</Link> */}
+
             </div>
         </header>
     );

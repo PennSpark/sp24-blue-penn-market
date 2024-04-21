@@ -6,7 +6,6 @@
   align-items: center;
 } */
 
-/* AppStyles.css */
 .App-background {
   background: linear-gradient(to bottom, #ffffff 0%, #DDEFFF 100%);
   min-height: 100vh;
@@ -46,4 +45,29 @@
   background-color: #0056b3;
 }
 
-/* Add any other specific styles needed for your App component */
+.login-info {
+  margin: 20px;
+  font-size: 20px;
+  color: #333; 
+  font-family: 'Karla', sans-serif; 
+  text-align: center;
+}
+
+.sign-out-button {
+  padding: 10px 20px;
+  background-color: #007BFF; 
+  color: white;
+  border: none;
+  border-radius: 8px; 
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s; 
+  font-family: 'Karla', sans-serif; 
+  display: block;
+  margin: 0 auto; 
+}
+
+.sign-out-button:hover {
+  background-color: #0056b3; 
+}

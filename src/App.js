@@ -80,14 +80,17 @@ function App() {
     return (
       <div className="App">
         <Home />
-        <div>HI! You are logged in! Your user ID is {session.user.id}. Email is {session.user.email}.</div>
-        <button className="postButton" onClick={async () => {
+        <div className="login-info">
+          HI! You are logged in! Your user ID is {session.user.id}. Email is {session.user.email}.
+        </div>
+        <button className="sign-out-button" onClick={async () => {
           await supabase.auth.signOut();
           setLoginStatus(false); // Ensure login status is reset on sign out
         }}>
           SIGN OUT
         </button>
       </div>
+      
     );
   }
 }
