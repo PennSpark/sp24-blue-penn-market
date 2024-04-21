@@ -80,24 +80,8 @@ function App() {
   } else {
     return (
       <div className="App">
-<<<<<<< Updated upstream
         <Header/>
         <Home />
-=======
-        <div className="main-content">
-          <Home />
-        </div>
-        {/* <Home /> */}
-        <div className="login-info">
-          HI! You are logged in! Your user ID is {session.user.id}. Email is {session.user.email}.
-        </div>
-        <button className="sign-out-button" onClick={async () => {
-          await supabase.auth.signOut();
-          setLoginStatus(false); // Ensure login status is reset on sign out
-        }}>
-          SIGN OUT
-        </button>
->>>>>>> Stashed changes
       </div>
 
     );
