@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Karla:wght@700&display=swap');
 
-
 body {
     margin: 0;
     padding: 0;
+    font-family: 'Karla', sans-serif; 
 }
 
 .header {
@@ -13,27 +13,30 @@ body {
     flex-wrap: wrap;
     width: 100%;
     padding: 20px;
-    /* margin-top: 20px; */
-    overflow: hidden;
+    background-color: #fff; 
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: fixed; 
+    top: 0; 
+    left: 0;
+    right: 0; 
+    z-index: 1000; 
 }
 
 .header-content {
     display: flex;
     align-items: center;
     gap: 15px;
-
 }
 
 .header-logo {
     width: 34px;
     height: 62px;
-    aspect-ratio: 0.63;
+    object-fit: contain; 
 }
 
 .header-title {
     font-size: 30px;
     font-weight: bold;
-    font-family: 'Karla', sans-serif;
 }
 
 .header-nav {
@@ -44,7 +47,6 @@ body {
 .header-link {
     text-decoration: none;
     color: #0788FF;
-    font-family: 'Karla', sans-serif;
     font-weight: bold;
     font-size: 30px;
     margin-right: 60px;
@@ -59,7 +61,7 @@ body {
 
 .user-avatar {
     width: 51px;
-    aspect-ratio: 1;
+    height: 51px; 
     border-radius: 50%;
 }
 
@@ -67,16 +69,19 @@ body {
     text-decoration: none;
     font-size: 30px;
     color: #0788FF;
-    font-family: 'Karla', sans-serif;
     font-weight: bold;
 }
 
 @media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: center;
+    }
 
     .header-title,
     .header-link,
     .user-login {
-        font-size: 20px;
+        font-size: 20px; 
     }
 
     .header-link {

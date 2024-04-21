@@ -50,6 +50,7 @@ body {
   flex-direction: column; 
   background: linear-gradient(to bottom, #ffffff 0%, #DDEFFF 100%);
   gap: 20px;
+  min-height: 100vh;
 }
 
 .sidebar a {
@@ -80,6 +81,7 @@ body {
   align-items: center; 
   justify-content: space-between; 
   width: 100%; 
+  min-height: 100vh;
   margin-bottom: 20px; 
 }
 
@@ -87,6 +89,7 @@ body {
   display: flex;
   justify-content: space-between; 
   align-items: center;
+  min-height: 100vh;
   margin-bottom: 20px; 
 }
 
@@ -95,6 +98,7 @@ body {
   padding: 20px;
   background-color: #fff;
   overflow-y: auto; 
+  min-height: 100vh;
 }
 
 .product-column h3, .status-column h3 {
@@ -102,6 +106,7 @@ body {
   color: #000;
   font-family: 'Karla', sans-serif;
   font-weight: bold;
+  min-height: 100vh;
   font-size: 25px;
 }
   

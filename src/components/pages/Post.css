@@ -4,6 +4,7 @@
     background: linear-gradient(to bottom, #ffffff 0%, #DDEFFF 100%);
     min-height: 100vh;
     min-width: 100vw;
+    padding-top: 100px;
 }
 
 .postContainer {
