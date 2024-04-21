@@ -119,7 +119,7 @@ function Home(props) {
     return (
         <div className="home">
             {/* <Navbar /> */}
-            <Header />
+            {/* <Header /> */}
             <SearchBar />
             <div className="image-slider">
                 <div className="arrow left" onClick={prevSlide}></div>

@@ -5,6 +5,7 @@ import { Auth } from '@supabase/auth-ui-react';
 import { ThemeSupa } from '@supabase/auth-ui-shared';
 import Home from './components/pages/Home';
 import Login from './components/pages/Login';
+import Header from './components/Header';
 import './App.css';
 import './components/pages/Login.css';
 
@@ -79,16 +80,8 @@ function App() {
   } else {
     return (
       <div className="App">
+        <Header/>
         <Home />
-        <div className="login-info">
-          HI! You are logged in! Your user ID is {session.user.id}. Email is {session.user.email}.
-        </div>
-        <button className="sign-out-button" onClick={async () => {
-          await supabase.auth.signOut();
-          setLoginStatus(false); // Ensure login status is reset on sign out
-        }}>
-          SIGN OUT
-        </button>
       </div>
       
     );

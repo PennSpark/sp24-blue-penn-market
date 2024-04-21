@@ -1,10 +1,29 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { createClient } from '@supabase/supabase-js';
 import './Header.css';
 import './pages/Home.js';
 
+const supabase = createClient(process.env.REACT_APP_MY_SUPABASE_URL, process.env.REACT_APP_MY_SUPABASE_KEY);
 
 function Header() {
+
+    const [session, setSession] = useState(null)
+
+    useEffect(() => {
+        supabase.auth.getSession().then(({ data: { session } }) => {
+          setSession(session)
+        })
+    
+        const {
+          data: { subscription },
+        } = supabase.auth.onAuthStateChange((_event, session) => {
+          setSession(session)
+        })
+    
+        return () => subscription.unsubscribe()
+      }, [])
+    
     return (
         <header className="header">
             <div className="header-content">
@@ -28,7 +47,10 @@ function Header() {
                         className="user-avatar"
                     />
                 </Link>
-                {/* <Link to="/login" className="user-login">Sign Out</Link> */}
+                <button className="sign-out-button" onClick={async () => {
+                    await supabase.auth.signOut(); }}>
+                SIGN OUT
+                </button>
 
             </div>
         </header>

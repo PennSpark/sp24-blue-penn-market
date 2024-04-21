@@ -34,8 +34,6 @@ function MyProducts(props) {
       setSession(session)
     })
 
-    console.log(session);
-
     return () => subscription.unsubscribe()
   }, [])
 
