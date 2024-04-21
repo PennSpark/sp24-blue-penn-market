@@ -82,7 +82,7 @@ body {
   align-items: center; 
   justify-content: space-between; 
   width: 100%; 
-  min-height: 100vh;
+ 
   margin-bottom: 20px; 
 }
 
@@ -90,7 +90,7 @@ body {
   display: flex;
   justify-content: space-between; 
   align-items: center;
-  min-height: 100vh;
+ 
   margin-bottom: 20px; 
 }
 
@@ -99,7 +99,7 @@ body {
   padding: 20px;
   background-color: #fff;
   overflow-y: auto; 
-  min-height: 100vh;
+ 
 }
 
 .product-column h3, .status-column h3 {
