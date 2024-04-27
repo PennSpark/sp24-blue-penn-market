@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { createClient } from '@supabase/supabase-js';
 import Axios from 'axios';
 import Header from '../Header';
-import './Education.css';
+import './SellerDashboard.css';
 import ProductCard from '../ProductCard';
 import ProductStatus from '../ProductStatus';
 
@@ -11,7 +11,7 @@ import ProductStatus from '../ProductStatus';
 const supabase = createClient(process.env.REACT_APP_MY_SUPABASE_URL, process.env.REACT_APP_MY_SUPABASE_KEY);
 
 
-function Education(props) {
+function SellerDashBoard(props) {
   
   const [prods, setProds] = useState([]);
   const [session, setSession] = useState(null)
@@ -109,10 +109,10 @@ function Education(props) {
               <h3>Product Name</h3>
               <h3>Product Status</h3>
             </div>
-            {prods.map(prods => (
-              <div key={prods.iid} className="product-row">
-                <ProductCard prods={prods} handleBuy={handleBuy} />
-                <ProductStatus status={prods.status} />
+            {prods.map((prod, index) => (
+              <div key={index} className="product-row">
+                <ProductCard prods={prod} handleBuy={handleBuy}/>
+                <ProductStatus status={prod.buyer ? "Sold" : "Selling"} />
               </div>
             ))}
           </div>
@@ -123,4 +123,4 @@ function Education(props) {
   )
 }
 
-export default Education;
+export default SellerDashBoard;

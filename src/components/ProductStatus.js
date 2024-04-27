@@ -2,7 +2,7 @@ import React from 'react';
 import './ProductStatus.css';
 
 function ProductStatus({ status }) {
-  const backgroundColor = status === "Selling" ? "#4CAF50" : (status === "Sold" ? "rgb(255, 83, 83)" : "defaultColor")
+  const backgroundColor = status === "Selling" ? "#4CAF50" : "rgb(255, 83, 83)"
   return (
     <div className="product-status" style={{ backgroundColor: backgroundColor }}>
       <div className="status-text">{status}</div>

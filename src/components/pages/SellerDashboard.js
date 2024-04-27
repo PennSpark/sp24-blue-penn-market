@@ -88,7 +88,6 @@ function SellerDashBoard(props) {
 
     Axios.post('http://localhost:3256/buy', {
       item: productId,
-      
       buyer: session.user.id,
     })
       .then(response => {
