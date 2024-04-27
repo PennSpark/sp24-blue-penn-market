@@ -111,8 +111,8 @@ function Education(props) {
             </div>
             {prods.map(prods => (
               <div key={prods.iid} className="product-row">
-                <ProductCard prods={prods} />
-                <ProductStatus status={"selling"} />
+                <ProductCard prods={prods} handleBuy={handleBuy} />
+                <ProductStatus status={prods.status} />
               </div>
             ))}
           </div>

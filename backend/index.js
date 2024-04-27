@@ -14,7 +14,7 @@ async function registerIntoDB(name, email, id) {
         //replace the fields with your information
         user: 'postgres',
         database: 'pennmarket',
-        password: 'strokeseat', 
+        password: 'David is so awesome David is so awesome', 
         port: 5432,
     });
 
@@ -52,7 +52,7 @@ async function postProduct(name, des, cat, price, sell) {
         //replace the fields with your information
         user: 'postgres',
         database: 'pennmarket',
-        password: 'strokeseat', 
+        password: 'David is so awesome David is so awesome', 
         port: 5432,
     });
 
@@ -93,7 +93,7 @@ async function buyProduct(iid, buy) {
         //replace the fields with your information
         user: 'postgres',
         database: 'pennmarket',
-        password: 'strokeseat', 
+        password: 'David is so awesome David is so awesome', 
         port: 5432,
     });
 
@@ -138,7 +138,7 @@ async function categorySearch(category) {
         //replace the fields with your information
         user: 'postgres',
         database: 'pennmarket',
-        password: 'strokeseat', 
+        password: 'David is so awesome David is so awesome', 
         port: 5432,
     });
 
@@ -165,7 +165,7 @@ async function myProducts(id) {
         //replace the fields with your information
         user: 'postgres',
         database: 'pennmarket',
-        password: 'strokeseat', 
+        password: 'David is so awesome David is so awesome', 
         port: 5432,
     });
 
@@ -192,7 +192,7 @@ async function getResultsProd(search) {
         //replace the fields with your information
         user: 'postgres',
         database: 'pennmarket',
-        password: 'strokeseat', 
+        password: 'David is so awesome David is so awesome', 
         port: 5432,
     });
 
@@ -223,7 +223,7 @@ async function getAllProd() {
         //replace the fields with your information
         user: 'postgres',
         database: 'pennmarket',
-        password: 'strokeseat', 
+        password: 'David is so awesome David is so awesome', 
         port: 5432,
     });
 
@@ -251,7 +251,7 @@ async function checkUserExists(id) {
         //replace the fields with your information
         user: 'postgres',
         database: 'pennmarket',
-        password: 'strokeseat', 
+        password: 'David is so awesome David is so awesome', 
         port: 5432,
     });
 

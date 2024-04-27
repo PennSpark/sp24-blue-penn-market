@@ -32,7 +32,7 @@ function ProductCard({ prods, handleBuy }) {
       {prods.buyer ? (
                 <><strong>Buyer:</strong> {prods.buyer}<br/></>
               ) : (
-                <button onClick={() => handleBuy(prods.iid)}>Buy This</button>
+                <button className="buy-button" onClick={() => handleBuy(prods.iid)}>Buy This</button>
               )}
 
       
