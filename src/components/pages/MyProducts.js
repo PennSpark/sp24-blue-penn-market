@@ -114,10 +114,10 @@ function MyProducts(props) {
               <h3>Product Name</h3>
               <h3>Product Status</h3>
             </div>
-            {prods.map(prods => (
-              <div key={prods.iid} className="product-row">
-                <ProductCard prods={prods} />
-                <ProductStatus status={"selling"} />
+            {prods.map((prod, index) => (
+              <div key={index} className="product-row">
+                <ProductCard prods={prod} handleBuy={handleBuy}/>
+                <ProductStatus status={prod.buyer ? "Sold" : "Selling"} />
               </div>
             ))}
           </div>
